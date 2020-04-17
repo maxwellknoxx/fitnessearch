@@ -20,9 +20,12 @@ public class Food {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String name;
+	private Integer weight;
 	private Double kcal;
 	private Double fat;
 	private Double fibre;
+	private Double carbohydrates;
 	private Double protein;
 	private Double salt;
 	

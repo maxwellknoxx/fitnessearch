@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.knoxx.fitnessearch.model.Food;
@@ -36,7 +35,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message = "Name can not be empty!")
 	@Column(nullable = false)
 	private String name;
 	
@@ -49,11 +47,9 @@ public class User {
 	@Column(nullable = false)
 	private String email;
 	
-	@NotNull(message = "Weight can not be empty!")
 	@Column(nullable = false)
 	private Double weight;
 	
-	@NotNull(message = "Height can not be empty!")
 	@Column(nullable = false)
 	private Double height;
 	

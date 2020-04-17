@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository repository;
 
-	public List<User> findAll() {
-		return repository.findAll();
+	public List<UserDTO> findAll() {
+		return UserMapper.entityToDTOList(repository.findAll());
 	}
 
 	@Override
@@ -37,6 +37,15 @@ public class UserServiceImpl implements UserService {
 		return UserMapper.entityToDTO(user);
 	}
 
+	public Boolean update(User entity) {
+		try {
+			repository.save(entity);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	@Override
 	public Boolean delete(Long id) {
 		try {
@@ -45,6 +54,14 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public UserDTO login(User entity) {
+		User user = repository.findByEmail(entity.getEmail()).orElseThrow();
+		if (user.getPassword().equals(entity.getPassword())) {
+			return UserMapper.entityToDTO(user);
+		}
+		return null;
 	}
 
 }
